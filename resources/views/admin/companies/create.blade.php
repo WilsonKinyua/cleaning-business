@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label for="open_hours">{{ trans('cruds.company.fields.open_hours') }}</label>
-                <textarea class="form-control ckeditor {{ $errors->has('open_hours') ? 'is-invalid' : '' }}" name="open_hours" id="open_hours">{!! old('open_hours') !!}</textarea>
+                <textarea class="form-control {{ $errors->has('open_hours') ? 'is-invalid' : '' }}" name="open_hours" id="open_hours">{!! old('open_hours') !!}</textarea>
                 @if($errors->has('open_hours'))
                     <div class="invalid-feedback">
                         {{ $errors->first('open_hours') }}

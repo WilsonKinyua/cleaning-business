@@ -1,6 +1,10 @@
 <?php
 
-Route::redirect('/', '/login');
+// Route::redirect('/', '/login');
+Route::get('/','HomePage\HomePageController@index')->name('home.page');
+Route::get('test', function(){
+    return view('layouts.homepage');
+});
 Route::get('/home', function () {
     if (session('status')) {
         return redirect()->route('admin.home')->with('status', session('status'));
