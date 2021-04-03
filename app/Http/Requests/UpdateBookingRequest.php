@@ -17,37 +17,41 @@ class UpdateBookingRequest extends FormRequest
     public function rules()
     {
         return [
-            'company'        => [
+            'company'          => [
                 'string',
                 'required',
             ],
-            'order_type'     => [
+            'order_type'       => [
                 'string',
                 'nullable',
             ],
-            'customer'       => [
+            'customer'         => [
                 'string',
                 'nullable',
             ],
-            'customer_phone' => [
+            'customer_phone'   => [
                 'nullable',
                 'integer',
                 'min:-2147483648',
                 'max:2147483647',
             ],
-            'status'         => [
+            'status'           => [
                 'required',
                 'integer',
                 'min:-2147483648',
                 'max:2147483647',
             ],
-            'description'    => [
+            'description'      => [
                 'string',
                 'nullable',
             ],
-            'location'       => [
+            'location'         => [
                 'string',
                 'nullable',
+            ],
+            'customer_address' => [
+                'string',
+                'required',
             ],
         ];
     }

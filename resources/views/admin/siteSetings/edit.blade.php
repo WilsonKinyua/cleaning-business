@@ -112,6 +112,16 @@
                 <span class="help-block">{{ trans('cruds.siteSeting.fields.linkedin_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="youtube">{{ trans('cruds.siteSeting.fields.youtube') }}</label>
+                <input class="form-control {{ $errors->has('youtube') ? 'is-invalid' : '' }}" type="text" name="youtube" id="youtube" value="{{ old('youtube', $siteSeting->youtube) }}">
+                @if($errors->has('youtube'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('youtube') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.siteSeting.fields.youtube_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>

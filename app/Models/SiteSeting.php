@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,7 +13,7 @@ use \DateTimeInterface;
 
 class SiteSeting extends Model implements HasMedia
 {
-    use SoftDeletes, InteractsWithMedia, HasFactory;
+    use SoftDeletes, InteractsWithMedia, Auditable, HasFactory;
 
     public $table = 'site_setings';
 
@@ -36,6 +37,7 @@ class SiteSeting extends Model implements HasMedia
         'twitter',
         'instagram',
         'linkedin',
+        'youtube',
         'created_at',
         'updated_at',
         'deleted_at',

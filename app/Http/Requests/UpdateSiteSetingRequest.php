@@ -54,6 +54,10 @@ class UpdateSiteSetingRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'youtube'   => [
+                'string',
+                'nullable',
+            ],
         ];
     }
 }

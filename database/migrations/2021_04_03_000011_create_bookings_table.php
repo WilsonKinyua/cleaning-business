@@ -17,6 +17,8 @@ class CreateBookingsTable extends Migration
             $table->integer('status');
             $table->string('description')->nullable();
             $table->string('location')->nullable();
+            $table->string('customer_email')->nullable();
+            $table->string('customer_address');
             $table->timestamps();
         });
     }

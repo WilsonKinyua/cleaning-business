@@ -57,6 +57,10 @@ class StoreSiteSetingRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'youtube'   => [
+                'string',
+                'nullable',
+            ],
         ];
     }
 }

@@ -8,6 +8,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::apiResource('roles', 'RolesApiController');
 
     // Users
+    Route::post('users/media', 'UsersApiController@storeMedia')->name('users.storeMedia');
     Route::apiResource('users', 'UsersApiController');
 
     // Crm Statuses
@@ -50,4 +51,18 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Reviews
     Route::apiResource('reviews', 'ReviewsApiController', ['except' => ['store', 'update', 'destroy']]);
+
+    // New Companies
+    Route::apiResource('new-companies', 'NewCompanyApiController', ['except' => ['store', 'update']]);
+
+    // Aboutuses
+    Route::post('aboutuses/media', 'AboutUsApiController@storeMedia')->name('aboutuses.storeMedia');
+    Route::apiResource('aboutuses', 'AboutUsApiController');
+
+    // Blogs
+    Route::post('blogs/media', 'BlogApiController@storeMedia')->name('blogs.storeMedia');
+    Route::apiResource('blogs', 'BlogApiController');
+
+    // Comments
+    Route::apiResource('comments', 'CommentsApiController', ['except' => ['store', 'update']]);
 });

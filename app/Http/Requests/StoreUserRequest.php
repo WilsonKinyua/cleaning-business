@@ -25,6 +25,18 @@ class StoreUserRequest extends FormRequest
                 'required',
                 'unique:users',
             ],
+            'address'  => [
+                'string',
+                'nullable',
+            ],
+            'city'     => [
+                'string',
+                'nullable',
+            ],
+            'country'  => [
+                'string',
+                'nullable',
+            ],
             'password' => [
                 'required',
             ],

@@ -41,6 +41,50 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.user.fields.address') }}
+                        </th>
+                        <td>
+                            {{ $user->address }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.user.fields.city') }}
+                        </th>
+                        <td>
+                            {{ $user->city }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.user.fields.verified') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $user->verified ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.user.fields.country') }}
+                        </th>
+                        <td>
+                            {{ $user->country }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.user.fields.profile_photo') }}
+                        </th>
+                        <td>
+                            @if($user->profile_photo)
+                                <a href="{{ $user->profile_photo->getUrl() }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ $user->profile_photo->getUrl('thumb') }}">
+                                </a>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.user.fields.email_verified_at') }}
                         </th>
                         <td>
@@ -57,6 +101,14 @@
                             @endforeach
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.user.fields.description') }}
+                        </th>
+                        <td>
+                            {{ $user->description }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">
@@ -68,6 +120,22 @@
     </div>
 </div>
 
-
+<div class="card">
+    <div class="card-header">
+        {{ trans('global.relatedData') }}
+    </div>
+    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="#user_user_alerts" role="tab" data-toggle="tab">
+                {{ trans('cruds.userAlert.title') }}
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane" role="tabpanel" id="user_user_alerts">
+            @includeIf('admin.users.relationships.userUserAlerts', ['userAlerts' => $user->userUserAlerts])
+        </div>
+    </div>
+</div>
 
 @endsection

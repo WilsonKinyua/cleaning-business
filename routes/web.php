@@ -9,6 +9,7 @@ Route::get('/home', function () {
     return redirect()->route('admin.home');
 });
 
+Route::get('userVerification/{token}', 'UserVerificationController@approve')->name('userVerification');
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
@@ -23,6 +24,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Users
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
+    Route::post('users/media', 'UsersController@storeMedia')->name('users.storeMedia');
+    Route::post('users/ckmedia', 'UsersController@storeCKEditorImages')->name('users.storeCKEditorImages');
+    Route::post('users/parse-csv-import', 'UsersController@parseCsvImport')->name('users.parseCsvImport');
+    Route::post('users/process-csv-import', 'UsersController@processCsvImport')->name('users.processCsvImport');
     Route::resource('users', 'UsersController');
 
     // Crm Statuses
@@ -79,6 +84,47 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Reviews
     Route::resource('reviews', 'ReviewsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
+
+    // Audit Logs
+    Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
+
+    // New Companies
+    Route::delete('new-companies/destroy', 'NewCompanyController@massDestroy')->name('new-companies.massDestroy');
+    Route::resource('new-companies', 'NewCompanyController', ['except' => ['create', 'store', 'edit', 'update']]);
+
+    // Aboutuses
+    Route::delete('aboutuses/destroy', 'AboutUsController@massDestroy')->name('aboutuses.massDestroy');
+    Route::post('aboutuses/media', 'AboutUsController@storeMedia')->name('aboutuses.storeMedia');
+    Route::post('aboutuses/ckmedia', 'AboutUsController@storeCKEditorImages')->name('aboutuses.storeCKEditorImages');
+    Route::resource('aboutuses', 'AboutUsController');
+
+    // Blogs
+    Route::delete('blogs/destroy', 'BlogController@massDestroy')->name('blogs.massDestroy');
+    Route::post('blogs/media', 'BlogController@storeMedia')->name('blogs.storeMedia');
+    Route::post('blogs/ckmedia', 'BlogController@storeCKEditorImages')->name('blogs.storeCKEditorImages');
+    Route::post('blogs/parse-csv-import', 'BlogController@parseCsvImport')->name('blogs.parseCsvImport');
+    Route::post('blogs/process-csv-import', 'BlogController@processCsvImport')->name('blogs.processCsvImport');
+    Route::resource('blogs', 'BlogController');
+
+    // Comments
+    Route::delete('comments/destroy', 'CommentsController@massDestroy')->name('comments.massDestroy');
+    Route::resource('comments', 'CommentsController', ['except' => ['create', 'store', 'edit', 'update']]);
+
+    // User Alerts
+    Route::delete('user-alerts/destroy', 'UserAlertsController@massDestroy')->name('user-alerts.massDestroy');
+    Route::get('user-alerts/read', 'UserAlertsController@read');
+    Route::resource('user-alerts', 'UserAlertsController', ['except' => ['edit', 'update']]);
+
+    Route::get('system-calendar', 'SystemCalendarController@index')->name('systemCalendar');
+    Route::get('messenger', 'MessengerController@index')->name('messenger.index');
+    Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
+    Route::post('messenger', 'MessengerController@storeTopic')->name('messenger.storeTopic');
+    Route::get('messenger/inbox', 'MessengerController@showInbox')->name('messenger.showInbox');
+    Route::get('messenger/outbox', 'MessengerController@showOutbox')->name('messenger.showOutbox');
+    Route::get('messenger/{topic}', 'MessengerController@showMessages')->name('messenger.showMessages');
+    Route::delete('messenger/{topic}', 'MessengerController@destroyTopic')->name('messenger.destroyTopic');
+    Route::post('messenger/{topic}/reply', 'MessengerController@replyToTopic')->name('messenger.reply');
+    Route::get('messenger/{topic}/reply', 'MessengerController@showReply')->name('messenger.showReply');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
 // Change password

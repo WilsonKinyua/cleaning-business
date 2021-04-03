@@ -51,6 +51,16 @@
                 <span class="help-block">{{ trans('cruds.booking.fields.customer_phone_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="customer_email">{{ trans('cruds.booking.fields.customer_email') }}</label>
+                <input class="form-control {{ $errors->has('customer_email') ? 'is-invalid' : '' }}" type="email" name="customer_email" id="customer_email" value="{{ old('customer_email', $booking->customer_email) }}">
+                @if($errors->has('customer_email'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('customer_email') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.booking.fields.customer_email_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label class="required" for="status">{{ trans('cruds.booking.fields.status') }}</label>
                 <input class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" type="number" name="status" id="status" value="{{ old('status', $booking->status) }}" step="1" required>
                 @if($errors->has('status'))
@@ -79,6 +89,16 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.booking.fields.location_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="customer_address">{{ trans('cruds.booking.fields.customer_address') }}</label>
+                <input class="form-control {{ $errors->has('customer_address') ? 'is-invalid' : '' }}" type="text" name="customer_address" id="customer_address" value="{{ old('customer_address', $booking->customer_address) }}" required>
+                @if($errors->has('customer_address'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('customer_address') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.booking.fields.customer_address_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

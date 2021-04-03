@@ -19,6 +19,7 @@ class CreateSiteSetingsTable extends Migration
             $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();
             $table->string('linkedin')->nullable();
+            $table->string('youtube')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -30,6 +30,9 @@
                             {{ trans('cruds.booking.fields.customer_phone') }}
                         </th>
                         <th>
+                            {{ trans('cruds.booking.fields.customer_email') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.booking.fields.status') }}
                         </th>
                         <th>
@@ -37,6 +40,9 @@
                         </th>
                         <th>
                             {{ trans('cruds.booking.fields.location') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.booking.fields.customer_address') }}
                         </th>
                         <th>
                             &nbsp;
@@ -65,6 +71,9 @@
                                 {{ $booking->customer_phone ?? '' }}
                             </td>
                             <td>
+                                {{ $booking->customer_email ?? '' }}
+                            </td>
+                            <td>
                                 {{ $booking->status ?? '' }}
                             </td>
                             <td>
@@ -72,6 +81,9 @@
                             </td>
                             <td>
                                 {{ $booking->location ?? '' }}
+                            </td>
+                            <td>
+                                {{ $booking->customer_address ?? '' }}
                             </td>
                             <td>
                                 @can('booking_show')

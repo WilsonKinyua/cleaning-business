@@ -107,6 +107,14 @@
                             {{ $siteSeting->linkedin }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.siteSeting.fields.youtube') }}
+                        </th>
+                        <td>
+                            {{ $siteSeting->youtube }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

@@ -56,6 +56,9 @@
                             {{ trans('cruds.siteSeting.fields.linkedin') }}
                         </th>
                         <th>
+                            {{ trans('cruds.siteSeting.fields.youtube') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -102,6 +105,9 @@
                             </td>
                             <td>
                                 {{ $siteSeting->linkedin ?? '' }}
+                            </td>
+                            <td>
+                                {{ $siteSeting->youtube ?? '' }}
                             </td>
                             <td>
                                 @can('site_seting_show')

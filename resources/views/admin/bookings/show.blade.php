@@ -57,6 +57,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.booking.fields.customer_email') }}
+                        </th>
+                        <td>
+                            {{ $booking->customer_email }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.booking.fields.status') }}
                         </th>
                         <td>
@@ -77,6 +85,14 @@
                         </th>
                         <td>
                             {{ $booking->location }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.booking.fields.customer_address') }}
+                        </th>
+                        <td>
+                            {{ $booking->customer_address }}
                         </td>
                     </tr>
                 </tbody>

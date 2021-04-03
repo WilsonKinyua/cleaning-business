@@ -288,6 +288,98 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 70,
+                'title' => 'audit_log_show',
+            ],
+            [
+                'id'    => 71,
+                'title' => 'audit_log_access',
+            ],
+            [
+                'id'    => 72,
+                'title' => 'new_company_show',
+            ],
+            [
+                'id'    => 73,
+                'title' => 'new_company_delete',
+            ],
+            [
+                'id'    => 74,
+                'title' => 'new_company_access',
+            ],
+            [
+                'id'    => 75,
+                'title' => 'site_access',
+            ],
+            [
+                'id'    => 76,
+                'title' => 'about_us_create',
+            ],
+            [
+                'id'    => 77,
+                'title' => 'about_us_edit',
+            ],
+            [
+                'id'    => 78,
+                'title' => 'about_us_show',
+            ],
+            [
+                'id'    => 79,
+                'title' => 'about_us_delete',
+            ],
+            [
+                'id'    => 80,
+                'title' => 'about_us_access',
+            ],
+            [
+                'id'    => 81,
+                'title' => 'blog_create',
+            ],
+            [
+                'id'    => 82,
+                'title' => 'blog_edit',
+            ],
+            [
+                'id'    => 83,
+                'title' => 'blog_show',
+            ],
+            [
+                'id'    => 84,
+                'title' => 'blog_delete',
+            ],
+            [
+                'id'    => 85,
+                'title' => 'blog_access',
+            ],
+            [
+                'id'    => 86,
+                'title' => 'comment_show',
+            ],
+            [
+                'id'    => 87,
+                'title' => 'comment_delete',
+            ],
+            [
+                'id'    => 88,
+                'title' => 'comment_access',
+            ],
+            [
+                'id'    => 89,
+                'title' => 'user_alert_create',
+            ],
+            [
+                'id'    => 90,
+                'title' => 'user_alert_show',
+            ],
+            [
+                'id'    => 91,
+                'title' => 'user_alert_delete',
+            ],
+            [
+                'id'    => 92,
+                'title' => 'user_alert_access',
+            ],
+            [
+                'id'    => 93,
                 'title' => 'profile_password_edit',
             ],
         ];

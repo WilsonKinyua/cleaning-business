@@ -6,6 +6,10 @@
             <a class="btn btn-success" href="{{ route('admin.users.create') }}">
                 {{ trans('global.add') }} {{ trans('cruds.user.title_singular') }}
             </a>
+            <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                {{ trans('global.app_csvImport') }}
+            </button>
+            @include('csvImport.modal', ['model' => 'User', 'route' => 'admin.users.parseCsvImport'])
         </div>
     </div>
 @endcan
@@ -32,10 +36,28 @@
                             {{ trans('cruds.user.fields.email') }}
                         </th>
                         <th>
+                            {{ trans('cruds.user.fields.address') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.user.fields.city') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.user.fields.verified') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.user.fields.country') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.user.fields.profile_photo') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.user.fields.email_verified_at') }}
                         </th>
                         <th>
                             {{ trans('cruds.user.fields.roles') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.user.fields.description') }}
                         </th>
                         <th>
                             &nbsp;
@@ -58,12 +80,35 @@
                                 {{ $user->email ?? '' }}
                             </td>
                             <td>
+                                {{ $user->address ?? '' }}
+                            </td>
+                            <td>
+                                {{ $user->city ?? '' }}
+                            </td>
+                            <td>
+                                <span style="display:none">{{ $user->verified ?? '' }}</span>
+                                <input type="checkbox" disabled="disabled" {{ $user->verified ? 'checked' : '' }}>
+                            </td>
+                            <td>
+                                {{ $user->country ?? '' }}
+                            </td>
+                            <td>
+                                @if($user->profile_photo)
+                                    <a href="{{ $user->profile_photo->getUrl() }}" target="_blank" style="display: inline-block">
+                                        <img src="{{ $user->profile_photo->getUrl('thumb') }}">
+                                    </a>
+                                @endif
+                            </td>
+                            <td>
                                 {{ $user->email_verified_at ?? '' }}
                             </td>
                             <td>
                                 @foreach($user->roles as $key => $item)
                                     <span class="badge badge-info">{{ $item->title }}</span>
                                 @endforeach
+                            </td>
+                            <td>
+                                {{ $user->description ?? '' }}
                             </td>
                             <td>
                                 @can('user_show')
@@ -136,7 +181,7 @@
 
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
-    order: [[ 1, 'desc' ]],
+    order: [[ 1, 'asc' ]],
     pageLength: 100,
   });
   let table = $('.datatable-User:not(.ajaxTable)').DataTable({ buttons: dtButtons })
