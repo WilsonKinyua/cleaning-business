@@ -23,7 +23,7 @@ class ServicesController extends Controller
     {
         abort_if(Gate::denies('service_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $services = Service::with(['company_name', 'service'])->get();
+        $services = Service::with(['company_name', 'service', 'media'])->get();
 
         return view('admin.services.index', compact('services'));
     }
@@ -42,6 +42,10 @@ class ServicesController extends Controller
     public function store(StoreServiceRequest $request)
     {
         $service = Service::create($request->all());
+
+        if ($request->input('photo', false)) {
+            $service->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+        }
 
         if ($media = $request->input('ck-media', false)) {
             Media::whereIn('id', $media)->update(['model_id' => $service->id]);
@@ -66,6 +70,18 @@ class ServicesController extends Controller
     public function update(UpdateServiceRequest $request, Service $service)
     {
         $service->update($request->all());
+
+        if ($request->input('photo', false)) {
+            if (!$service->photo || $request->input('photo') !== $service->photo->file_name) {
+                if ($service->photo) {
+                    $service->photo->delete();
+                }
+
+                $service->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+            }
+        } elseif ($service->photo) {
+            $service->photo->delete();
+        }
 
         return redirect()->route('admin.services.index');
     }
