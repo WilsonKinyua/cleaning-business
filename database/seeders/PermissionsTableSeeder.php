@@ -204,179 +204,179 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 49,
-                'title' => 'service_create',
-            ],
-            [
-                'id'    => 50,
-                'title' => 'service_edit',
-            ],
-            [
-                'id'    => 51,
-                'title' => 'service_show',
-            ],
-            [
-                'id'    => 52,
-                'title' => 'service_delete',
-            ],
-            [
-                'id'    => 53,
-                'title' => 'service_access',
-            ],
-            [
-                'id'    => 54,
                 'title' => 'site_seting_create',
             ],
             [
-                'id'    => 55,
+                'id'    => 50,
                 'title' => 'site_seting_edit',
             ],
             [
-                'id'    => 56,
+                'id'    => 51,
                 'title' => 'site_seting_show',
             ],
             [
-                'id'    => 57,
+                'id'    => 52,
                 'title' => 'site_seting_delete',
             ],
             [
-                'id'    => 58,
+                'id'    => 53,
                 'title' => 'site_seting_access',
             ],
             [
-                'id'    => 59,
+                'id'    => 54,
                 'title' => 'booking_show',
             ],
             [
-                'id'    => 60,
+                'id'    => 55,
                 'title' => 'booking_access',
             ],
             [
-                'id'    => 61,
+                'id'    => 56,
                 'title' => 'subscriber_show',
             ],
             [
-                'id'    => 62,
+                'id'    => 57,
                 'title' => 'subscriber_access',
             ],
             [
-                'id'    => 63,
+                'id'    => 58,
                 'title' => 'location_create',
             ],
             [
-                'id'    => 64,
+                'id'    => 59,
                 'title' => 'location_edit',
             ],
             [
-                'id'    => 65,
+                'id'    => 60,
                 'title' => 'location_show',
             ],
             [
-                'id'    => 66,
+                'id'    => 61,
                 'title' => 'location_delete',
             ],
             [
-                'id'    => 67,
+                'id'    => 62,
                 'title' => 'location_access',
             ],
             [
-                'id'    => 68,
+                'id'    => 63,
                 'title' => 'review_show',
             ],
             [
-                'id'    => 69,
+                'id'    => 64,
                 'title' => 'review_access',
             ],
             [
-                'id'    => 70,
+                'id'    => 65,
                 'title' => 'audit_log_show',
             ],
             [
-                'id'    => 71,
+                'id'    => 66,
                 'title' => 'audit_log_access',
             ],
             [
-                'id'    => 72,
+                'id'    => 67,
                 'title' => 'new_company_show',
             ],
             [
-                'id'    => 73,
+                'id'    => 68,
                 'title' => 'new_company_delete',
             ],
             [
-                'id'    => 74,
+                'id'    => 69,
                 'title' => 'new_company_access',
             ],
             [
-                'id'    => 75,
+                'id'    => 70,
                 'title' => 'site_access',
             ],
             [
-                'id'    => 76,
+                'id'    => 71,
                 'title' => 'about_us_create',
             ],
             [
-                'id'    => 77,
+                'id'    => 72,
                 'title' => 'about_us_edit',
             ],
             [
-                'id'    => 78,
+                'id'    => 73,
                 'title' => 'about_us_show',
             ],
             [
-                'id'    => 79,
+                'id'    => 74,
                 'title' => 'about_us_delete',
             ],
             [
-                'id'    => 80,
+                'id'    => 75,
                 'title' => 'about_us_access',
             ],
             [
-                'id'    => 81,
+                'id'    => 76,
                 'title' => 'blog_create',
             ],
             [
-                'id'    => 82,
+                'id'    => 77,
                 'title' => 'blog_edit',
             ],
             [
-                'id'    => 83,
+                'id'    => 78,
                 'title' => 'blog_show',
             ],
             [
-                'id'    => 84,
+                'id'    => 79,
                 'title' => 'blog_delete',
             ],
             [
-                'id'    => 85,
+                'id'    => 80,
                 'title' => 'blog_access',
             ],
             [
-                'id'    => 86,
+                'id'    => 81,
                 'title' => 'comment_show',
             ],
             [
-                'id'    => 87,
+                'id'    => 82,
                 'title' => 'comment_delete',
             ],
             [
-                'id'    => 88,
+                'id'    => 83,
                 'title' => 'comment_access',
             ],
             [
-                'id'    => 89,
+                'id'    => 84,
                 'title' => 'user_alert_create',
             ],
             [
-                'id'    => 90,
+                'id'    => 85,
                 'title' => 'user_alert_show',
             ],
             [
-                'id'    => 91,
+                'id'    => 86,
                 'title' => 'user_alert_delete',
             ],
             [
-                'id'    => 92,
+                'id'    => 87,
                 'title' => 'user_alert_access',
+            ],
+            [
+                'id'    => 88,
+                'title' => 'service_create',
+            ],
+            [
+                'id'    => 89,
+                'title' => 'service_edit',
+            ],
+            [
+                'id'    => 90,
+                'title' => 'service_show',
+            ],
+            [
+                'id'    => 91,
+                'title' => 'service_delete',
+            ],
+            [
+                'id'    => 92,
+                'title' => 'service_access',
             ],
             [
                 'id'    => 93,

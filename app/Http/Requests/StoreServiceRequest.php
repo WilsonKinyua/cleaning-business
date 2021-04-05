@@ -21,11 +21,17 @@ class StoreServiceRequest extends FormRequest
                 'required',
                 'integer',
             ],
-            'service_id'      => [
+            'service_name'    => [
+                'string',
                 'required',
-                'integer',
             ],
-            'price'           => [
+            'service_photo'   => [
+                'required',
+            ],
+            'service_price'   => [
+                'required',
+            ],
+            'description'     => [
                 'required',
             ],
         ];

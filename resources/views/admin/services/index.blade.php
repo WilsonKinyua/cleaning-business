@@ -6,6 +6,10 @@
             <a class="btn btn-success" href="{{ route('admin.services.create') }}">
                 {{ trans('global.add') }} {{ trans('cruds.service.title_singular') }}
             </a>
+            <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                {{ trans('global.app_csvImport') }}
+            </button>
+            @include('csvImport.modal', ['model' => 'Service', 'route' => 'admin.services.parseCsvImport'])
         </div>
     </div>
 @endcan
@@ -29,10 +33,13 @@
                             {{ trans('cruds.service.fields.company_name') }}
                         </th>
                         <th>
-                            {{ trans('cruds.service.fields.service') }}
+                            {{ trans('cruds.service.fields.service_name') }}
                         </th>
                         <th>
-                            {{ trans('cruds.service.fields.price') }}
+                            {{ trans('cruds.service.fields.service_photo') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.service.fields.service_price') }}
                         </th>
                         <th>
                             &nbsp;
@@ -52,10 +59,17 @@
                                 {{ $service->company_name->name ?? '' }}
                             </td>
                             <td>
-                                {{ $service->service->title ?? '' }}
+                                {{ $service->service_name ?? '' }}
                             </td>
                             <td>
-                                {{ $service->price ?? '' }}
+                                @if($service->service_photo)
+                                    <a href="{{ $service->service_photo->getUrl() }}" target="_blank" style="display: inline-block">
+                                        <img src="{{ $service->service_photo->getUrl('thumb') }}">
+                                    </a>
+                                @endif
+                            </td>
+                            <td>
+                                {{ $service->service_price ?? '' }}
                             </td>
                             <td>
                                 @can('service_show')
@@ -128,7 +142,7 @@
 
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
-    order: [[ 1, 'asc' ]],
+    order: [[ 1, 'desc' ]],
     pageLength: 100,
   });
   let table = $('.datatable-Service:not(.ajaxTable)').DataTable({ buttons: dtButtons })
@@ -136,7 +150,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 })
 
 </script>

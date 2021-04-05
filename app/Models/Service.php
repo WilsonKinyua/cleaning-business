@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,9 +13,13 @@ use \DateTimeInterface;
 
 class Service extends Model implements HasMedia
 {
-    use SoftDeletes, InteractsWithMedia, HasFactory;
+    use SoftDeletes, InteractsWithMedia, Auditable, HasFactory;
 
     public $table = 'services';
+
+    protected $appends = [
+        'service_photo',
+    ];
 
     protected $dates = [
         'created_at',
@@ -24,8 +29,8 @@ class Service extends Model implements HasMedia
 
     protected $fillable = [
         'company_name_id',
-        'service_id',
-        'price',
+        'service_name',
+        'service_price',
         'description',
         'created_at',
         'updated_at',
@@ -48,14 +53,9 @@ class Service extends Model implements HasMedia
         return $this->belongsTo(Company::class, 'company_name_id');
     }
 
-    public function service()
+    public function getServicePhotoAttribute()
     {
-        return $this->belongsTo(Category::class, 'service_id');
-    }
-
-    public function getPhotoAttribute()
-    {
-        $file = $this->getMedia('photo')->last();
+        $file = $this->getMedia('service_photo')->last();
 
         if ($file) {
             $file->url       = $file->getUrl();

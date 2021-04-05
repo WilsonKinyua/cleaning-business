@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyServiceRequest;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
-use App\Models\Category;
 use App\Models\Company;
 use App\Models\Service;
 use Gate;
@@ -17,13 +17,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ServicesController extends Controller
 {
-    use MediaUploadingTrait;
+    use MediaUploadingTrait, CsvImportTrait;
 
     public function index()
     {
         abort_if(Gate::denies('service_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $services = Service::with(['company_name', 'service', 'media'])->get();
+        $services = Service::with(['company_name', 'media'])->get();
 
         return view('admin.services.index', compact('services'));
     }
@@ -34,17 +34,15 @@ class ServicesController extends Controller
 
         $company_names = Company::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $services = Category::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.services.create', compact('company_names', 'services'));
+        return view('admin.services.create', compact('company_names'));
     }
 
     public function store(StoreServiceRequest $request)
     {
         $service = Service::create($request->all());
 
-        if ($request->input('photo', false)) {
-            $service->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+        if ($request->input('service_photo', false)) {
+            $service->addMedia(storage_path('tmp/uploads/' . basename($request->input('service_photo'))))->toMediaCollection('service_photo');
         }
 
         if ($media = $request->input('ck-media', false)) {
@@ -60,27 +58,25 @@ class ServicesController extends Controller
 
         $company_names = Company::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $services = Category::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $service->load('company_name');
 
-        $service->load('company_name', 'service');
-
-        return view('admin.services.edit', compact('company_names', 'services', 'service'));
+        return view('admin.services.edit', compact('company_names', 'service'));
     }
 
     public function update(UpdateServiceRequest $request, Service $service)
     {
         $service->update($request->all());
 
-        if ($request->input('photo', false)) {
-            if (!$service->photo || $request->input('photo') !== $service->photo->file_name) {
-                if ($service->photo) {
-                    $service->photo->delete();
+        if ($request->input('service_photo', false)) {
+            if (!$service->service_photo || $request->input('service_photo') !== $service->service_photo->file_name) {
+                if ($service->service_photo) {
+                    $service->service_photo->delete();
                 }
 
-                $service->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+                $service->addMedia(storage_path('tmp/uploads/' . basename($request->input('service_photo'))))->toMediaCollection('service_photo');
             }
-        } elseif ($service->photo) {
-            $service->photo->delete();
+        } elseif ($service->service_photo) {
+            $service->service_photo->delete();
         }
 
         return redirect()->route('admin.services.index');
@@ -90,7 +86,7 @@ class ServicesController extends Controller
     {
         abort_if(Gate::denies('service_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $service->load('company_name', 'service');
+        $service->load('company_name');
 
         return view('admin.services.show', compact('service'));
     }

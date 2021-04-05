@@ -32,10 +32,6 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::post('categories/media', 'CategoriesApiController@storeMedia')->name('categories.storeMedia');
     Route::apiResource('categories', 'CategoriesApiController');
 
-    // Services
-    Route::post('services/media', 'ServicesApiController@storeMedia')->name('services.storeMedia');
-    Route::apiResource('services', 'ServicesApiController');
-
     // Site Setings
     Route::post('site-setings/media', 'SiteSetingsApiController@storeMedia')->name('site-setings.storeMedia');
     Route::apiResource('site-setings', 'SiteSetingsApiController');
@@ -65,4 +61,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Comments
     Route::apiResource('comments', 'CommentsApiController', ['except' => ['store', 'update']]);
+
+    // Services
+    Route::post('services/media', 'ServicesApiController@storeMedia')->name('services.storeMedia');
+    Route::apiResource('services', 'ServicesApiController');
 });

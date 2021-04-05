@@ -24,28 +24,35 @@
                 <span class="help-block">{{ trans('cruds.service.fields.company_name_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="service_id">{{ trans('cruds.service.fields.service') }}</label>
-                <select class="form-control select2 {{ $errors->has('service') ? 'is-invalid' : '' }}" name="service_id" id="service_id" required>
-                    @foreach($services as $id => $service)
-                        <option value="{{ $id }}" {{ old('service_id') == $id ? 'selected' : '' }}>{{ $service }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('service'))
+                <label class="required" for="service_name">{{ trans('cruds.service.fields.service_name') }}</label>
+                <input class="form-control {{ $errors->has('service_name') ? 'is-invalid' : '' }}" type="text" name="service_name" id="service_name" value="{{ old('service_name', '') }}" required>
+                @if($errors->has('name'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('service') }}
+                        {{ $errors->first('name') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.service.fields.service_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.service.fields.service_name_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="price">{{ trans('cruds.service.fields.price') }}</label>
-                <input class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" type="number" name="price" id="price" value="{{ old('price', '') }}" step="0.01" required>
-                @if($errors->has('price'))
+                <label class="required" for="service_photo">{{ trans('cruds.service.fields.service_photo') }}</label>
+                <div class="needsclick dropzone {{ $errors->has('service_photo') ? 'is-invalid' : '' }}" id="service_photo-dropzone">
+                </div>
+                @if($errors->has('service_photo'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('price') }}
+                        {{ $errors->first('service_photo') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.service.fields.price_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.service.fields.service_photo_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="service_price">{{ trans('cruds.service.fields.service_price') }}</label>
+                <input class="form-control {{ $errors->has('service_price') ? 'is-invalid' : '' }}" type="number" name="service_price" id="service_price" value="{{ old('service_price', '') }}" step="0.01" required>
+                @if($errors->has('service_price'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('service_price') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.service.fields.service_price_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="description">{{ trans('cruds.service.fields.description') }}</label>
@@ -71,6 +78,60 @@
 @endsection
 
 @section('scripts')
+<script>
+    Dropzone.options.servicePhotoDropzone = {
+    url: '{{ route('admin.services.storeMedia') }}',
+    maxFilesize: 20, // MB
+    acceptedFiles: '.jpeg,.jpg,.png,.gif',
+    maxFiles: 1,
+    addRemoveLinks: true,
+    headers: {
+      'X-CSRF-TOKEN': "{{ csrf_token() }}"
+    },
+    params: {
+      size: 20,
+      width: 4096,
+      height: 4096
+    },
+    success: function (file, response) {
+      $('form').find('input[name="service_photo"]').remove()
+      $('form').append('<input type="hidden" name="service_photo" value="' + response.name + '">')
+    },
+    removedfile: function (file) {
+      file.previewElement.remove()
+      if (file.status !== 'error') {
+        $('form').find('input[name="service_photo"]').remove()
+        this.options.maxFiles = this.options.maxFiles + 1
+      }
+    },
+    init: function () {
+@if(isset($service) && $service->service_photo)
+      var file = {!! json_encode($service->service_photo) !!}
+          this.options.addedfile.call(this, file)
+      this.options.thumbnail.call(this, file, file.preview)
+      file.previewElement.classList.add('dz-complete')
+      $('form').append('<input type="hidden" name="service_photo" value="' + file.file_name + '">')
+      this.options.maxFiles = this.options.maxFiles - 1
+@endif
+    },
+    error: function (file, response) {
+        if ($.type(response) === 'string') {
+            var message = response //dropzone sends it's own error messages in string
+        } else {
+            var message = response.errors.file
+        }
+        file.previewElement.classList.add('dz-error')
+        _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
+        _results = []
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            node = _ref[_i]
+            _results.push(node.textContent = message)
+        }
+
+        return _results
+    }
+}
+</script>
 <script>
     $(document).ready(function () {
   function SimpleUploadAdapter(editor) {

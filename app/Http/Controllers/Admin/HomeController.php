@@ -62,40 +62,6 @@ class HomeController
         }
 
         $settings3 = [
-            'chart_title'           => 'Services',
-            'chart_type'            => 'latest_entries',
-            'report_type'           => 'group_by_date',
-            'model'                 => 'App\Models\Service',
-            'group_by_field'        => 'created_at',
-            'group_by_period'       => 'day',
-            'aggregate_function'    => 'count',
-            'filter_field'          => 'created_at',
-            'filter_days'           => '30',
-            'group_by_field_format' => 'd-m-Y H:i:s',
-            'column_class'          => 'col-md-12',
-            'entries_number'        => '10',
-            'fields'                => [
-                'company_name' => 'name',
-                'service'      => 'title',
-                'price'        => '',
-                'created_at'   => '',
-            ],
-            'translation_key'       => 'service',
-        ];
-
-        $settings3['data'] = [];
-
-        if (class_exists($settings3['model'])) {
-            $settings3['data'] = $settings3['model']::latest()
-                ->take($settings3['entries_number'])
-                ->get();
-        }
-
-        if (!array_key_exists('fields', $settings3)) {
-            $settings3['fields'] = [];
-        }
-
-        $settings4 = [
             'chart_title'           => 'New Applications(Company)',
             'chart_type'            => 'latest_entries',
             'report_type'           => 'group_by_date',
@@ -116,18 +82,18 @@ class HomeController
             'translation_key'       => 'newCompany',
         ];
 
-        $settings4['data'] = [];
+        $settings3['data'] = [];
 
-        if (class_exists($settings4['model'])) {
-            $settings4['data'] = $settings4['model']::latest()
-                ->take($settings4['entries_number'])
+        if (class_exists($settings3['model'])) {
+            $settings3['data'] = $settings3['model']::latest()
+                ->take($settings3['entries_number'])
                 ->get();
         }
 
-        if (!array_key_exists('fields', $settings4)) {
-            $settings4['fields'] = [];
+        if (!array_key_exists('fields', $settings3)) {
+            $settings3['fields'] = [];
         }
 
-        return view('home', compact('chart1', 'settings2', 'settings3', 'settings4'));
+        return view('home', compact('chart1', 'settings2', 'settings3'));
     }
 }

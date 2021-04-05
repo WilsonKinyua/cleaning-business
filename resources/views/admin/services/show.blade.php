@@ -33,18 +33,30 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.service.fields.service') }}
+                            {{ trans('cruds.service.fields.service_name') }}
                         </th>
                         <td>
-                            {{ $service->service->title ?? '' }}
+                            {{ $service->service_name }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.service.fields.price') }}
+                            {{ trans('cruds.service.fields.service_photo') }}
                         </th>
                         <td>
-                            {{ $service->price }}
+                            @if($service->service_photo)
+                                <a href="{{ $service->service_photo->getUrl() }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ $service->service_photo->getUrl('thumb') }}">
+                                </a>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.service.fields.service_price') }}
+                        </th>
+                        <td>
+                            {{ $service->service_price }}
                         </td>
                     </tr>
                     <tr>

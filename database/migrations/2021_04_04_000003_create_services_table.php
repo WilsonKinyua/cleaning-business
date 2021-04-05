@@ -10,8 +10,9 @@ class CreateServicesTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->decimal('price', 15, 2);
-            $table->longText('description')->nullable();
+            $table->string('service_name');
+            $table->decimal('service_price', 15, 2);
+            $table->longText('description');
             $table->timestamps();
             $table->softDeletes();
         });

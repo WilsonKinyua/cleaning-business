@@ -2,9 +2,6 @@
 
 // Route::redirect('/', '/login');
 Route::get('/','HomePage\HomePageController@index')->name('home.page');
-Route::get('test', function(){
-    return view('layouts.homepage');
-});
 Route::get('/home', function () {
     if (session('status')) {
         return redirect()->route('admin.home')->with('status', session('status'));
@@ -64,12 +61,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('categories/ckmedia', 'CategoriesController@storeCKEditorImages')->name('categories.storeCKEditorImages');
     Route::resource('categories', 'CategoriesController');
 
-    // Services
-    Route::delete('services/destroy', 'ServicesController@massDestroy')->name('services.massDestroy');
-    Route::post('services/media', 'ServicesController@storeMedia')->name('services.storeMedia');
-    Route::post('services/ckmedia', 'ServicesController@storeCKEditorImages')->name('services.storeCKEditorImages');
-    Route::resource('services', 'ServicesController');
-
     // Site Setings
     Route::delete('site-setings/destroy', 'SiteSetingsController@massDestroy')->name('site-setings.massDestroy');
     Route::post('site-setings/media', 'SiteSetingsController@storeMedia')->name('site-setings.storeMedia');
@@ -118,6 +109,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('user-alerts/destroy', 'UserAlertsController@massDestroy')->name('user-alerts.massDestroy');
     Route::get('user-alerts/read', 'UserAlertsController@read');
     Route::resource('user-alerts', 'UserAlertsController', ['except' => ['edit', 'update']]);
+
+    // Services
+    Route::delete('services/destroy', 'ServicesController@massDestroy')->name('services.massDestroy');
+    Route::post('services/media', 'ServicesController@storeMedia')->name('services.storeMedia');
+    Route::post('services/ckmedia', 'ServicesController@storeCKEditorImages')->name('services.storeCKEditorImages');
+    Route::post('services/parse-csv-import', 'ServicesController@parseCsvImport')->name('services.parseCsvImport');
+    Route::post('services/process-csv-import', 'ServicesController@processCsvImport')->name('services.processCsvImport');
+    Route::resource('services', 'ServicesController');
 
     Route::get('system-calendar', 'SystemCalendarController@index')->name('systemCalendar');
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');

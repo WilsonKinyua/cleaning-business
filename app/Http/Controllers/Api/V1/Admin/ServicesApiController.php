@@ -20,12 +20,16 @@ class ServicesApiController extends Controller
     {
         abort_if(Gate::denies('service_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ServiceResource(Service::with(['company_name', 'service'])->get());
+        return new ServiceResource(Service::with(['company_name'])->get());
     }
 
     public function store(StoreServiceRequest $request)
     {
         $service = Service::create($request->all());
+
+        if ($request->input('service_photo', false)) {
+            $service->addMedia(storage_path('tmp/uploads/' . basename($request->input('service_photo'))))->toMediaCollection('service_photo');
+        }
 
         return (new ServiceResource($service))
             ->response()
@@ -36,12 +40,24 @@ class ServicesApiController extends Controller
     {
         abort_if(Gate::denies('service_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ServiceResource($service->load(['company_name', 'service']));
+        return new ServiceResource($service->load(['company_name']));
     }
 
     public function update(UpdateServiceRequest $request, Service $service)
     {
         $service->update($request->all());
+
+        if ($request->input('service_photo', false)) {
+            if (!$service->service_photo || $request->input('service_photo') !== $service->service_photo->file_name) {
+                if ($service->service_photo) {
+                    $service->service_photo->delete();
+                }
+
+                $service->addMedia(storage_path('tmp/uploads/' . basename($request->input('service_photo'))))->toMediaCollection('service_photo');
+            }
+        } elseif ($service->service_photo) {
+            $service->service_photo->delete();
+        }
 
         return (new ServiceResource($service))
             ->response()

@@ -21,11 +21,14 @@ class UpdateServiceRequest extends FormRequest
                 'required',
                 'integer',
             ],
-            'service_id'      => [
+            'service_name'    => [
+                'string',
                 'required',
-                'integer',
             ],
-            'price'           => [
+            'service_price'   => [
+                'required',
+            ],
+            'description'     => [
                 'required',
             ],
         ];

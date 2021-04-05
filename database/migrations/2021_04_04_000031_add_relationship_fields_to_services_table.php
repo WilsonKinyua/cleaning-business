@@ -10,9 +10,7 @@ class AddRelationshipFieldsToServicesTable extends Migration
     {
         Schema::table('services', function (Blueprint $table) {
             $table->unsignedBigInteger('company_name_id');
-            $table->foreign('company_name_id', 'company_name_fk_3509822')->references('id')->on('companies');
-            $table->unsignedBigInteger('service_id');
-            $table->foreign('service_id', 'service_fk_3509823')->references('id')->on('categories');
+            $table->foreign('company_name_id', 'company_name_fk_3595726')->references('id')->on('companies');
         });
     }
 }
