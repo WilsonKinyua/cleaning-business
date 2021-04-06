@@ -25,7 +25,7 @@
                 </a>
             </li>
         @endcan
-        @can('new_company_access')
+        {{-- @can('new_company_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.new-companies.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/new-companies") || request()->is("admin/new-companies/*") ? "c-active" : "" }}">
                     <i class="fa-fw fab fa-affiliatetheme c-sidebar-nav-icon">
@@ -34,7 +34,7 @@
                     {{ trans('cruds.newCompany.title') }}
                 </a>
             </li>
-        @endcan
+        @endcan --}}
         @can('subscriber_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.subscribers.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/subscribers") || request()->is("admin/subscribers/*") ? "c-active" : "" }}">
@@ -45,7 +45,7 @@
                 </a>
             </li>
         @endcan
-        @can('review_access')
+        {{-- @can('review_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.reviews.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/reviews") || request()->is("admin/reviews/*") ? "c-active" : "" }}">
                     <i class="fa-fw fas fa-edit c-sidebar-nav-icon">
@@ -54,7 +54,7 @@
                     {{ trans('cruds.review.title') }}
                 </a>
             </li>
-        @endcan
+        @endcan --}}
         @can('setting_access')
             <li class="c-sidebar-nav-dropdown {{ request()->is("admin/companies*") ? "c-show" : "" }} {{ request()->is("admin/categories*") ? "c-show" : "" }} {{ request()->is("admin/locations*") ? "c-show" : "" }} {{ request()->is("admin/services*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
@@ -168,7 +168,7 @@
                     {{ trans('cruds.site.title') }}
                 </a>
                 <ul class="c-sidebar-nav-dropdown-items">
-                    @can('site_seting_access')
+                    {{-- @can('site_seting_access')
                         <li class="c-sidebar-nav-item">
                             <a href="{{ route("admin.site-setings.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/site-setings") || request()->is("admin/site-setings/*") ? "c-active" : "" }}">
                                 <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
@@ -177,7 +177,7 @@
                                 {{ trans('cruds.siteSeting.title') }}
                             </a>
                         </li>
-                    @endcan
+                    @endcan --}}
                     @can('about_us_access')
                         <li class="c-sidebar-nav-item">
                             <a href="{{ route("admin.aboutuses.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/aboutuses") || request()->is("admin/aboutuses/*") ? "c-active" : "" }}">
@@ -188,7 +188,7 @@
                             </a>
                         </li>
                     @endcan
-                    @can('blog_access')
+                    {{-- @can('blog_access')
                         <li class="c-sidebar-nav-item">
                             <a href="{{ route("admin.blogs.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/blogs") || request()->is("admin/blogs/*") ? "c-active" : "" }}">
                                 <i class="fa-fw fas fa-pen c-sidebar-nav-icon">
@@ -207,7 +207,7 @@
                                 {{ trans('cruds.comment.title') }}
                             </a>
                         </li>
-                    @endcan
+                    @endcan --}}
                 </ul>
             </li>
         @endcan
@@ -273,14 +273,14 @@
                 </a>
             </li>
         @endcan
-        <li class="c-sidebar-nav-item">
+        {{-- <li class="c-sidebar-nav-item">
             <a href="{{ route("admin.systemCalendar") }}" class="c-sidebar-nav-link {{ request()->is("admin/system-calendar") || request()->is("admin/system-calendar/*") ? "c-active" : "" }}">
                 <i class="c-sidebar-nav-icon fa-fw fas fa-calendar">
 
                 </i>
                 {{ trans('global.systemCalendar') }}
             </a>
-        </li>
+        </li> --}}
         @php($unread = \App\Models\QaTopic::unreadCount())
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.messenger.index") }}" class="{{ request()->is("admin/messenger") || request()->is("admin/messenger/*") ? "c-active" : "" }} c-sidebar-nav-link">
