@@ -26,7 +26,8 @@
 
 	<!-- YOUR CUSTOM CSS -->
 	<link href="{{ asset('css/custom.css')}}" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    @yield('css')
 </head>
 
 <body>
@@ -141,9 +142,9 @@
 					<h3 data-target="#collapse_3">Contacts Us</h3>
 					<div class="collapse dont-collapse-sm contacts" id="collapse_3">
 						<ul>
-							<li><i class="icon_house_alt"></i>97845 Baker st. 567<br>Los Angeles - US</li>
-							<li><i class="icon_mobile"></i>+94 423-23-221</li>
-							<li><i class="icon_mail_alt"></i><a href="#0">info@domain.com</a></li>
+							<li><i class="icon_house_alt"></i> {!! trans('panel.address') !!}</li>
+							<li><i class="icon_mobile"></i>{!! trans('panel.phone') !!}</li>
+							<li><i class="icon_mail_alt"></i><a href="malto:{!! trans('panel.email') !!}">{!! trans('panel.email') !!}</a></li>
 						</ul>
 					</div>
 				</div>
@@ -152,12 +153,13 @@
 					<div class="collapse dont-collapse-sm" id="collapse_4">
 						<div id="newsletter">
 							<div id="message-newsletter"></div>
-							<form method="post" action="assets/newsletter.php" name="newsletter_form"
-								id="newsletter_form">
+							<form method="post" action="{{ route('sub.subsc')}}" name="newsletter_form"
+								>
+                                @csrf
 								<div class="form-group">
-									<input type="email" name="email_newsletter" id="email_newsletter"
+									<input type="email" name="email" id="email_newsletter"
 										class="form-control" placeholder="Your email">
-									<button type="submit" id="submit-newsletter"><i
+									<button type="submit" ><i
 											class="arrow_carrot-right"></i></button>
 								</div>
 							</form>
@@ -165,18 +167,18 @@
 						<div class="follow_us">
 							<h5>Follow Us</h5>
 							<ul>
-								<li><a href="#0"><img
+								<li><a href="{!! trans('panel.twitter') !!}"><img
 											src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-											data-src="img/twitter_icon.svg" alt="" class="lazy"></a></li>
-								<li><a href="#0"><img
+											data-src="{{ asset('img/twitter_icon.svg')}}" alt="" class="lazy"></a></li>
+								<li><a href="{!! trans('panel.facebook') !!}"><img
 											src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-											data-src="img/facebook_icon.svg" alt="" class="lazy"></a></li>
-								<li><a href="#0"><img
+											data-src="{{ asset('img/facebook_icon.svg')}}" alt="" class="lazy"></a></li>
+								<li><a href="{!! trans('panel.instagram') !!}"><img
 											src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-											data-src="img/instagram_icon.svg" alt="" class="lazy"></a></li>
-								<li><a href="#0"><img
+											data-src="{{ asset('img/instagram_icon.svg')}}" alt="" class="lazy"></a></li>
+								<li><a href="{!! trans('panel.youtube') !!}"><img
 											src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-											data-src="img/youtube_icon.svg" alt="" class="lazy"></a></li>
+											data-src="{{ asset('img/youtube_icon.svg')}}" alt="" class="lazy"></a></li>
 							</ul>
 						</div>
 					</div>
@@ -211,9 +213,9 @@
 				</div>
 				<div class="col-lg-6">
 					<ul class="additional_links">
-						<li><a href="#0">Terms and conditions</a></li>
-						<li><a href="#0">Privacy</a></li>
-						<li><span>© 2021 {{ trans('panel.site_title') }}</span></li>
+						{{-- <li><a href="#0">Terms and conditions</a></li>
+						<li><a href="#0">Privacy</a></li> --}}
+						<li><span>Copyright © 2021 {{ trans('panel.site_title') }}</span></li>
 					</ul>
 				</div>
 			</div>
@@ -236,8 +238,8 @@
 		</div>
 		<form>
 			<div class="sign-in-wrapper">
-				<a href="#0" class="social_bt facebook">Login with Facebook</a>
-				<a href="#0" class="social_bt google">Login with Google</a>
+				{{-- <a href="#0" class="social_bt facebook">Login with Facebook</a>
+				<a href="#0" class="social_bt google">Login with Google</a> --}}
 				<div class="divider"><span>Or</span></div>
 				<div class="form-group">
 					<label>Email</label>
@@ -280,6 +282,8 @@
 	<!-- SPECIFIC SCRIPTS -->
 	<script src="{{ asset('js/modernizr.min.js')}}"></script>
 	<script src="{{ asset('js/video_header.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<script>
 		// Video Header
 		HeaderVideo.init({
@@ -289,7 +293,7 @@
 			autoPlayVideo: true
 		});
 	</script>
-
+    @yield('js')
 </body>
 
 </html>

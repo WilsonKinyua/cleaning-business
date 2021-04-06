@@ -11,10 +11,10 @@ class CreateBookingsTable extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('company');
-            $table->string('order_type')->nullable();
+            $table->string('date')->nullable();
             $table->string('customer')->nullable();
-            $table->integer('customer_phone')->nullable();
-            $table->integer('status');
+            $table->string('customer_phone')->nullable();
+            $table->text('service');
             $table->string('description')->nullable();
             $table->string('location')->nullable();
             $table->string('customer_email')->nullable();

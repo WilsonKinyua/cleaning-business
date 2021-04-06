@@ -1,4 +1,5 @@
 @extends('layouts.homepage')
+
 @section('content')
 
 <main>
@@ -177,7 +178,7 @@
                         @if($item->logo)
                                 <img src="{{ $item->logo->getUrl() }}" data-src="{{ $item->logo->getUrl() }}" class="owl-lazy" alt="">
                         @endif
-                        <a href="#." class="strip_info">
+                        <a href="{{ route('company.details', $item->id )}}" class="strip_info">
                             <small>{{ $item->name }}</small>
                             <div class="item_title">
                                 <h3>{{ $item->city->city }}</h3>
@@ -348,26 +349,32 @@
                     <a href="#0">View All</a>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="list_home">
                     <ul>
+                        @foreach ($services as $item)
                         <li>
-                            <a href="detail-restaurant.html">
+                            <a href="{{ route('service.get',$item->id )}}">
                                 <figure>
-                                    <img src="img/location_list_placeholder.png" data-src="img/location_list_1.jpg"
+                                    @if($item->service_photo)
+                                        <img src="{{ asset('img/location_list_placeholder.png')}}" data-src="{{ $item->service_photo->getUrl() }}"
                                         alt="" class="lazy">
+                                    @endif
+
                                 </figure>
-                                <div class="score"><strong>9.5</strong></div>
-                                <em>Italian</em>
-                                <h3>La Monnalisa</h3>
-                                <small>8 Patriot Square E2 9NF</small>
+                                {{-- <div class="score"><strong>9.5</strong></div> --}}
+                                <em>{{ $item->company_name->name ?? '' }}</em>
+                                <h3>{{ $item->service_name }}</h3>
+                                <small>{!! Str::limit($item->description, 30) !!}</small>
                                 <ul>
-                                    <li><span class="ribbon off">-30%</span></li>
-                                    <li>Average price $35</li>
+                                    {{-- <li><span class="ribbon off">-30%</span></li> --}}
+                                    <li>Average price Ksh {{ $item->service_price }}</li>
                                 </ul>
                             </a>
                         </li>
-                        <li>
+                        @endforeach
+
+                        {{-- <li>
                             <a href="detail-restaurant.html">
                                 <figure>
                                     <img src="img/location_list_placeholder.png" data-src="img/location_list_2.jpg"
@@ -398,11 +405,11 @@
                                     <li>Average price $20</li>
                                 </ul>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </div>
-            <div class="col-md-6">
+            {{-- <div class="col-md-6">
                 <div class="list_home">
                     <ul>
                         <li>
@@ -455,7 +462,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <!-- /row -->
         <p class="text-center d-block d-md-block d-lg-none"><a href="grid-listing-filterscol.html"

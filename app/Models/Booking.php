@@ -20,11 +20,11 @@ class Booking extends Model
 
     protected $fillable = [
         'company',
-        'order_type',
+        'date',
         'customer',
         'customer_phone',
         'customer_email',
-        'status',
+        'service',
         'description',
         'location',
         'customer_address',

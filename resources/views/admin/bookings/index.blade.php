@@ -21,7 +21,7 @@
                             {{ trans('cruds.booking.fields.company') }}
                         </th>
                         <th>
-                            {{ trans('cruds.booking.fields.order_type') }}
+                            Date
                         </th>
                         <th>
                             {{ trans('cruds.booking.fields.customer') }}
@@ -33,7 +33,7 @@
                             {{ trans('cruds.booking.fields.customer_email') }}
                         </th>
                         <th>
-                            {{ trans('cruds.booking.fields.status') }}
+                            Service
                         </th>
                         <th>
                             {{ trans('cruds.booking.fields.description') }}
@@ -62,7 +62,7 @@
                                 {{ $booking->company ?? '' }}
                             </td>
                             <td>
-                                {{ $booking->order_type ?? '' }}
+                                {{ $booking->date ?? '' }}
                             </td>
                             <td>
                                 {{ $booking->customer ?? '' }}
@@ -74,7 +74,7 @@
                                 {{ $booking->customer_email ?? '' }}
                             </td>
                             <td>
-                                {{ $booking->status ?? '' }}
+                                {{ $booking->service ?? '' }}
                             </td>
                             <td>
                                 {{ $booking->description ?? '' }}
@@ -112,7 +112,7 @@
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-  
+
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
     order: [[ 1, 'desc' ]],
@@ -123,7 +123,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 })
 
 </script>
