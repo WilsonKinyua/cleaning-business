@@ -12,22 +12,22 @@
                         <div class="col-xl-8 col-lg-10 col-md-8">
                             <h1>Discover &amp; Book</h1>
                             <p>The best cleaning companies at the best price</p>
-                            <form method="post" action="grid-listings-filterscol.html">
+                            <form>
                                 <div class="row no-gutters custom-search-input">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-10">
                                         <div class="form-group">
                                             <input class="form-control" type="text"
                                                 placeholder="What are you looking for...">
                                             <i class="icon_search"></i>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    {{-- <div class="col-lg-6">
                                         <div class="form-group">
                                             <input class="form-control no_border_r" type="text"
                                                 placeholder="Address, neighborhood...">
                                             <i class="icon_pin_alt"></i>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-lg-2">
                                         <input type="submit" value="Search">
                                     </div>
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <img src="{{ asset('img/video_fix.png')}}" alt="" class="header-video--media" data-video-src="{{ asset('video/cleaning')}}"
+        <img src="https://images.pexels.com/photos/4099467/pexels-photo-4099467.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="header-video--media" data-video-src="{{ asset('video/cleaning')}}"
             data-teaser-source="{{ asset('video/cleaning')}}" data-provider="" data-video-width="1920" data-video-height="960">
     </div>
     <!-- /header-video -->
@@ -333,7 +333,7 @@
                     <small>{{ trans('panel.site_title') }}</small>
                     <h3>More than 3000 Companies work with us</h3>
                     <p>Book a slot easly at the best price. Learn more about us</p>
-                    <a href="" class="btn_1">View About us</a>
+                    <a href="/about-us" class="btn_1">View About us</a>
                 </div>
             </div>
             <!-- /wrapper -->
@@ -478,7 +478,7 @@
                     <h3>Are you a Cleaning Company Owner?</h3>
                     <p>Join Us to increase your online visibility. You'll have access to even more customers who are
                         looking to enjoy your services at home.</p>
-                    <a href="submit-restaurant.html" class="btn_1">Read more</a>
+                    {{-- <a href="submit-restaurant.html" class="btn_1">Read more</a> --}}
                 </div>
             </div>
         </div>

@@ -6,6 +6,7 @@ Route::get('company/{id}','HomePage\HomePageController@companyDetails')->name('c
 Route::post('company/quote','HomePage\HomePageController@quoteAdd')->name('quote.add');
 Route::get('service/{id}','HomePage\HomePageController@service')->name('service.get');
 Route::post('newsletter','HomePage\HomePageController@emailSend')->name('sub.subsc');
+Route::get('about-us','HomePage\HomePageController@about')->name('about.us');
 Route::get('/home', function () {
     if (session('status')) {
         return redirect()->route('admin.home')->with('status', session('status'));

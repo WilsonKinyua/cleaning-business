@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\HomePage;
 
 use App\Http\Controllers\Controller;
+use App\Models\AboutUs;
 use App\Models\Booking;
 use App\Models\Category;
 use App\Models\Company;
@@ -27,29 +28,35 @@ class HomePageController extends Controller
     }
 
     public function companyDetails($id) {
-
+        $categories = Category::all();
         $company = Company::findOrFail($id);
         $services = Service::where('company_name_id','=',$id)->get();
-        return view('homepage.company-details',compact('company','services'));
+        return view('homepage.company-details',compact('company','services','categories'));
 
     }
 
     public function quoteAdd(Request $request) {
-
+        $categories = Category::all();
         $quote = Booking::create($request->all());
 
         return redirect()->back()->with('success','Quote sent successfully');
     }
 
     public function service($id) {
-
+        $categories = Category::all();
         $service = Service::findOrFail($id);
-        return view('homepage.service-details',compact('service'));
+        return view('homepage.service-details',compact('service','categories'));
     }
 
     public function emailSend(Request $request) {
         $sub = Subscriber::create($request->all());
         return redirect()->back()->with('success','Email added successfully');
+    }
+
+    public function about() {
+        $about = AboutUs::all();
+        $categories = Category::all();
+        return view('homepage.about',compact('about','categories'));
     }
     /**
      * Show the form for creating a new resource.
