@@ -7,6 +7,7 @@ Route::post('company/quote','HomePage\HomePageController@quoteAdd')->name('quote
 Route::get('service/{id}','HomePage\HomePageController@service')->name('service.get');
 Route::post('newsletter','HomePage\HomePageController@emailSend')->name('sub.subsc');
 Route::get('about-us','HomePage\HomePageController@about')->name('about.us');
+Route::post('search','HomePage\HomePageController@search')->name('company.search');
 Route::get('/home', function () {
     if (session('status')) {
         return redirect()->route('admin.home')->with('status', session('status'));

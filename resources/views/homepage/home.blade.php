@@ -12,12 +12,13 @@
                         <div class="col-xl-8 col-lg-10 col-md-8">
                             <h1>Discover &amp; Book</h1>
                             <p>The best cleaning companies at the best price</p>
-                            <form>
+                            <form action="{{ route('company.search')}}" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <div class="row no-gutters custom-search-input">
                                     <div class="col-lg-10">
                                         <div class="form-group">
-                                            <input class="form-control" type="text"
-                                                placeholder="What are you looking for...">
+                                            <input class="form-control" type="text" name="q"
+                                                placeholder="What are you looking for...carpet cleaning?">
                                             <i class="icon_search"></i>
                                         </div>
                                     </div>

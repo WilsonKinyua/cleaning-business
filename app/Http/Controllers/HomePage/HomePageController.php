@@ -58,6 +58,22 @@ class HomePageController extends Controller
         $categories = Category::all();
         return view('homepage.about',compact('about','categories'));
     }
+
+    public function search(Request $request) {
+
+        // Get the search value from the request
+        $search = $request->input('q');
+
+        // Search in the name and description columns from the products table
+        $services = Service::query()
+            ->where('service_name', 'LIKE', "%{$search}%")
+            ->orWhere('description', 'LIKE', "%{$search}%")
+            ->get();
+
+        $categories = Category::all();
+        return view('homepage.search', compact('services','categories'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
